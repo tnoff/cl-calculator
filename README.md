@@ -23,8 +23,8 @@ Compile Steps:
     gcc calc.c -lm -o calc
 
 Sample Usage:
-  ./calc 2+3
+    ./calc 2+3
   
   Must use quotes with Paren
-  ./calc '(2+3) - (24-1.5)'
+    ./calc '(2+3) - (24-1.5)'
   
