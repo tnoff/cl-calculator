@@ -92,6 +92,8 @@ char *digit_to_string(double number)
         if ( ( output[count] != '0' ) && ( output[count] != ' ') )
             break;
     }
+    if ( output[count] == '.')
+        count -= 1;
     return sub_string(output,0,count);
 }
 char *lexer(int argc, char* argv[])
