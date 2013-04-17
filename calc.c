@@ -4,7 +4,7 @@
 #include<math.h>
 /*
     t-noff
-    Date:march 14, 2013
+    Date:april 17, 2013
     
     command line calculator
     solves:
@@ -314,21 +314,27 @@ char *perform_addsub(char buffer[])
     //perform all addtions ( until buff doesnt change)
     //perform all subtractions ( until buff doesnt change)
     char *string = buffer;
+    int first_add, first_sub;
     do
     {
         buffer = string;
         string = doubles(buffer);
     }while ( ! compare_strings(buffer,string));
-    do
-    {
+    do{
         buffer = string;
-        string = perform_operation(buffer,'+');
-    }while ( ! compare_strings(buffer,string));
-    do
-    {
-        buffer = string;
-        string = perform_operation(buffer,'-');
-    }while( ! compare_strings(buffer,string));
+        first_add = find_character(buffer,'+');
+        first_sub = find_character(buffer,'-');
+        if (( first_add == - 1) && (first_sub == -1))
+            break;
+        if ( first_sub == - 1)
+            string = perform_operation(buffer,'+');
+        else if ( first_add = -1)
+            string = perform_operation(buffer,'-');
+        else if ( first_add < first_sub)
+            string = perform_operation(buffer,'+');
+        else 
+            string = perform_operation(buffer,'-');
+    }while(!compare_strings(buffer,string)); 
     return string;
 }
 char *perform_muldiv(char buffer[])
