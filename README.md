@@ -26,9 +26,9 @@ Compile Steps:
 Sample Usage
 ===================
    
-        ./calc 2+3
-        2+3=5
+    ./calc 2+3
+    2+3=5
   
-  Must use quotes with Paren
-        ./calc '(2+3) - (24-1.5)'
+Must use quotes with Paren
+    ./calc '(2+3) - (24-1.5)'
   
