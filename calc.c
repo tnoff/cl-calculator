@@ -144,7 +144,7 @@ int find_character(char buffer[], char ch)
 {
     //Incrememnt through buffer and return index of first ch
     int length = string_length(buffer), count;
-    for ( count = length - 1; count >=0; count -= 1)
+    for ( count = 0; count < length; count += 1)
     {
         if (buffer[count] == ch)
             return count;
@@ -286,14 +286,14 @@ char *replace_KMG(char buffer[])
     for ( count = 0; count < length; count += 1)
     {
         if ( buffer[count] == 'K'){
-            buffer = replace_sub_string(buffer,count,count,"*1024");
+            buffer = replace_sub_string(buffer,count,count,"*2^10");
             break;
         }
         if ( buffer[count] == 'M'){
-            buffer = replace_sub_string(buffer,count,count,"*1048576");
+            buffer = replace_sub_string(buffer,count,count,"*2^20");
             break;
         }if ( buffer[count] == 'G'){
-            buffer = replace_sub_string(buffer,count,count,"*1073741824");
+            buffer = replace_sub_string(buffer,count,count,"*2^30");
             break;
         }
     }
