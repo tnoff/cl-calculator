@@ -10,9 +10,9 @@
     solves:
         + - * / ^ ()
     extras:
-        K --> *1024 
-        M --> *1024*1024
-        G --> *1024*1024*1024
+        K --> *2^10 
+        M --> *2^20
+        G --> *2^30
         example: 1K+2 ==> 1*1024+2
 */
 int string_length(char *string)
@@ -313,8 +313,8 @@ char *perform_KMG(char buffer[])
 char *perform_addsub(char buffer[])
 {
     //check for doubles ( ++, --, +- , -+)
-    //perform all addtions ( until buff doesnt change)
-    //perform all subtractions ( until buff doesnt change)
+    //look for first + or -, then perform
+    //pefrom until buffer doesnt change
     char *string = buffer;
     int first_add, first_sub;
     do
