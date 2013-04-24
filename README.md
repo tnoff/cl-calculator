@@ -11,20 +11,24 @@ Supoorts double numbers and negatives
 
 Extras:
 
-K is converted to '*1024'
+K is converted to '*2^10'
 
-M is converted to *1024*1024'
+M is converted to *2^20'
 
-G is converted to '*1024*1024*1024'
+G is converted to '*2^30'
     
 IE '2K - 1' is converted to '2*1024 - 1'
 
 Compile Steps:
+==================
     gcc calc.c -lm -o calc
 
-Sample Usage:
-    ./calc 2+3
+Sample Usage
+===================
+   
+        ./calc 2+3
+        2+3=5
   
   Must use quotes with Paren
-    ./calc '(2+3) - (24-1.5)'
+        ./calc '(2+3) - (24-1.5)'
   
