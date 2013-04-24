@@ -326,6 +326,8 @@ char *perform_addsub(char buffer[])
         buffer = string;
         first_add = find_character(buffer,'+');
         first_sub = find_character(buffer,'-');
+        if (first_sub == 0)
+            first_sub = -1;
         if (( first_add == - 1) && (first_sub == -1))
             break;
         if ( first_sub == - 1)
