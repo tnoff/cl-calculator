@@ -346,15 +346,22 @@ char *perform_muldiv(char buffer[])
     //Perform all multiplications ( until buffer doesnt change)
     //Perform all divisions ( until buffer doesnt change)
     char *string = buffer;
+    int first_mul,first_div;
     do
     {
         buffer = string;
-        string = perform_operation(buffer,'*');
-    }while( ! compare_strings(buffer,string));
-    do 
-    {
-        buffer = string;
-        string = perform_operation(buffer,'/');
+        first_mul = find_character(buffer,'+');
+        first_div = find_character(buffer,'-');
+        if ((first_mul == -1) && (first_div == -1))
+            break;
+        if ( first_mul == -1)
+            string = perform_operation(buffer,'/');
+        else if ( first_div == -1)
+            string = perform_operation(buffer,'*');
+        else if ( first_mul < first_div)
+            string = perform_operation(buffer,'*');
+        else
+            string = perform_operation(buffer,'/');
     }while( ! compare_strings(buffer,string));
     return string;
 }
