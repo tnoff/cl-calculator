@@ -350,8 +350,8 @@ char *perform_muldiv(char buffer[])
     do
     {
         buffer = string;
-        first_mul = find_character(buffer,'+');
-        first_div = find_character(buffer,'-');
+        first_mul = find_character(buffer,'*');
+        first_div = find_character(buffer,'/');
         if ((first_mul == -1) && (first_div == -1))
             break;
         if ( first_mul == -1)
