@@ -283,17 +283,32 @@ char *replace_KMG(char buffer[])
      */
     int length = string_length(buffer);
     int count;
+    int *left;
+    double left_arg, answer;
     for ( count = 0; count < length; count += 1)
     {
         if ( buffer[count] == 'K'){
-            buffer = replace_sub_string(buffer,count,count,"*2^10");
+            left = left_argument(buffer,count);
+            left_arg = string_to_digit(sub_string(buffer,left[0],left[1]));
+            answer = left_arg * 1024;
+            buffer = replace_sub_string(buffer,left[0],count,
+                                        digit_to_string(answer));
+            printf("Buffer:%s\n",buffer);
             break;
         }
         if ( buffer[count] == 'M'){
-            buffer = replace_sub_string(buffer,count,count,"*2^20");
+            left = left_argument(buffer,count);
+            left_arg = string_to_digit(sub_string(buffer,left[0],left[1]));
+            answer = left_arg * 1048576.0;
+            buffer = replace_sub_string(buffer,left[0],count,
+                                        digit_to_string(answer));
             break;
         }if ( buffer[count] == 'G'){
-            buffer = replace_sub_string(buffer,count,count,"*2^30");
+            left = left_argument(buffer,count);
+            left_arg = string_to_digit(sub_string(buffer,left[0],left[1]));
+            answer = left_arg * 1073741824;
+            buffer = replace_sub_string(buffer,left[0],count,
+                                        digit_to_string(answer));
             break;
         }
     }
