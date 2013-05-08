@@ -293,7 +293,6 @@ char *replace_KMG(char buffer[])
             answer = left_arg * 1024;
             buffer = replace_sub_string(buffer,left[0],count,
                                         digit_to_string(answer));
-            printf("Buffer:%s\n",buffer);
             break;
         }
         if ( buffer[count] == 'M'){
