@@ -31,7 +31,7 @@ int compare_strings(char one[], char two[])
     int count;
     if ( length_one != string_length(two) )
         return 0;
-    for ( count = 0; count < length_one; count += 1)
+    for ( count = 0; count < length_one; count++)
     {
         if ( one[count] != two[count] )
             return 0;
@@ -54,7 +54,7 @@ char *sub_string(char buffer[], int start, int end)
     //get substring from start to end
     int count, i;
     char *output = realloc(NULL,end - start + 1);
-    for ( count = start, i = 0; count <= end; count += 1, i += 1)
+    for ( count = start, i = 0; count <= end; count++, i++)
         output[i] = buffer[count];
     return output;
 }
@@ -65,11 +65,11 @@ char *replace_sub_string(char buffer[], int start, int end, char input[])
     int input_length = string_length(input);
     char *output = realloc(NULL, length - (end - start + 1) + input_length);
     int index = 0, count;
-    for ( count = 0; count < start; count += 1,index += 1)
+    for ( count = 0; count < start; count++,index++)
         output[index] = buffer[count];
-    for ( count = 0; count < input_length; count += 1, index += 1)
+    for ( count = 0; count < input_length; count++, index++)
         output[index] = input[count];
-    for ( count = end + 1; count < length; count += 1,index += 1)
+    for ( count = end + 1; count < length; count++,index++)
         output[index] = buffer[count];
     return output;
 }
@@ -87,13 +87,13 @@ char *digit_to_string(double number)
     sprintf(output,"%f",number);
     //replace all needless 0's at end
     length = string_length(output);
-    for ( count = length - 1; count >= 0; count -= 1)
+    for ( count = length - 1; count >= 0; count--)
     {
         if ( ( output[count] != '0' ) && ( output[count] != ' ') )
             break;
     }
     if ( output[count] == '.')
-        count -= 1;
+        count--;
     return sub_string(output,0,count);
 }
 char *lexer(int argc, char* argv[])
@@ -103,17 +103,17 @@ char *lexer(int argc, char* argv[])
      */ 
     char *output;
     int data_size = 0, i , x, length, count = 0;
-    for ( i = 1; i < argc; i += 1)
+    for ( i = 1; i < argc; i++)
         data_size += string_length(argv[i]);
     output = realloc(NULL,data_size + 1);
-    for ( i = 1; i < argc; i += 1)
+    for ( i = 1; i < argc; i++)
     {
         length = string_length(argv[i]);
-        for ( x = 0; x < length; x += 1)
+        for ( x = 0; x < length; x++)
         {
             if ( argv[i][x] != ' '){
                 output[count] = argv[i][x];
-                count += 1;
+                count++;
             }
         }
     } 
@@ -127,12 +127,12 @@ int check_paren(char buffer[])
     int counter = 0;
     int length = string_length(buffer);
     int t;
-    for ( t = 0; t < length; t += 1)
+    for ( t = 0; t < length; t++)
     {
         if ( buffer[t] == '(')
-            counter += 1;
+            counter++;
         if ( buffer[t] == ')')
-            counter -= 1;
+            counter--;
         if ( counter < 0)
             return 0;
     }
@@ -144,7 +144,7 @@ int find_character(char buffer[], char ch)
 {
     //Incrememnt through buffer and return index of first ch
     int length = string_length(buffer), count;
-    for ( count = 0; count < length; count += 1)
+    for ( count = 0; count < length; count++)
     {
         if (buffer[count] == ch)
             return count;
@@ -162,7 +162,7 @@ int *left_argument(char buffer[],int index)
     int count;
     int *values;
     values = (int *)malloc(2 * sizeof(int));
-    for ( count = index - 1; count >= 0; count -= 1)
+    for ( count = index - 1; count >= 0; count--)
     {
         if ( !is_digit(buffer[count]))
             break;
@@ -170,7 +170,7 @@ int *left_argument(char buffer[],int index)
     if ( count != 0)
     {
         if (!(( buffer[count] == '-') && ( !is_digit(buffer[count - 1]))))
-            count += 1;
+            count++;
     }
     values[0] = count;
     values[1] = index - 1; 
@@ -187,14 +187,14 @@ int *right_argument(char buffer[],int index)
     int *values;
     values = (int *)malloc(2 * sizeof(int));
     int length = string_length(buffer);
-    for ( count = index + 1; count < length; count += 1)
+    for ( count = index + 1; count < length; count++)
     {
         if ( ! is_digit(buffer[count]) )
             break;
     }
     if ( ( count == index + 1) && ( buffer[index + 1] == '-'))
     {
-        for ( count = index + 2; count < length; count += 1)
+        for ( count = index + 2; count < length; count++)
         {
             if ( ! is_digit(buffer[count]))
                 break;
@@ -212,7 +212,7 @@ char *doubles(char buffer[])
     //http://s294.beta.photobucket.com/user/XpichewX/media/doubles.jpg.html
     int length = string_length(buffer);
     int count;
-    for ( count = 0; count < length - 1; count += 1)
+    for ( count = 0; count < length - 1; count++)
     {
         if ( ( buffer[count] == '+') && ( buffer[count + 1] == '-') ){
             buffer = replace_sub_string(buffer,count,count+1,"-");
@@ -285,7 +285,7 @@ char *replace_KMG(char buffer[])
     int count;
     int *left;
     double left_arg, answer;
-    for ( count = 0; count < length; count += 1)
+    for ( count = 0; count < length; count++)
     {
         if ( buffer[count] == 'K'){
             left = left_argument(buffer,count);
@@ -435,7 +435,7 @@ char *solve_sub_paren(char buffer[])
     char *string;
     int length = string_length(buffer);
     int count, left = -1, right = -1;
-    for ( count = 0; count < length; count += 1)
+    for ( count = 0; count < length; count++)
     {
         if ( buffer[count] == ')')
         {
@@ -443,7 +443,7 @@ char *solve_sub_paren(char buffer[])
             break;
         }
     }
-    for ( count; count >= 0; count -= 1)
+    for ( count; count >= 0; count--)
     {
         if ( buffer[count] == '(')
         {
