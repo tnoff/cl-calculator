@@ -3,8 +3,8 @@
 #include<string.h>
 #include<math.h>
 /*
-    t-noff
-    Date:april 17, 2013
+    Tyler Daniel North
+    Date:September 22, 2014
     
     command line calculator
     solves:
